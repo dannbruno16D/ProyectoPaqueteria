@@ -1,0 +1,28 @@
+@startuml
+actor Personal as P
+participant "Sistema" as S
+actor Administrador as Admin
+
+autonumber
+
+P -> S: Intentar procesar o mover paquete (en almacén / ruta)
+activate P
+activate S
+S -> S: Detectar anomalía (ej. Paquete dañado, extraviado o dirección errónea)
+P -> S: Registrar 'Incidencia con detalles'
+S -> S: Cambiar estatus a 'Incidencia Reportada'
+S -> S: Guardar registro detallado en la Bitácora de Auditoría (Log)
+
+S -> Admin: Enviar alerta crítica de incidencia
+activate Admin
+Admin -> S: Consultar historial de auditoría del paquete
+activate S
+S --> Admin: Mostrar bitácora completa (quién lo tocó, cuándo y dónde)
+deactivate S
+Admin -> S: Autorizar solución (reembolso o reenvío)
+deactivate Admin
+
+S --> P: Notificar resolución del caso
+deactivate S
+deactivate P
+@enduml
