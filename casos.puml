@@ -1,0 +1,62 @@
+@startuml
+left to right direction
+skinparam packageStyle rectangle
+
+actor Recepcionista
+actor "Encargado de Almacén" as Almacenero
+actor Transportista
+actor Administrador
+actor Cliente
+
+package "Sistema de Gestión y Rastreo de Paquetería" {
+  usecase "Iniciar Sesión" as UC_Login
+  
+  usecase "Registrar nuevo envío" as UC1
+  usecase "Generar código de rastreo" as UC2
+  usecase "Verificar datos" as UC3
+  
+  usecase "Registrar ingreso a almacén" as UC4
+  usecase "Asignar paquete a transportista" as UC5
+
+  usecase "Consultar paquetes asignados" as UC6
+  usecase "Actualizar estado del envío" as UC7
+  usecase "Reportar incidencias" as UC8
+  usecase "Escanear código" as UC9
+
+  usecase "Supervisar operaciones" as UC10
+  usecase "Generar reportes y auditoría" as UC11
+  usecase "Gestionar usuarios y permisos" as UC12
+  usecase "Autorizar resoluciones/reembolsos" as UC13
+
+  usecase "Consultar estado por rastreo" as UC14
+  usecase "Recibir notificaciones" as UC15
+  usecase "Solicitar servicios" as UC16
+}
+
+' Todos los roles internos usan el login
+Recepcionista --> UC_Login
+Almacenero --> UC_Login
+Transportista --> UC_Login
+Administrador --> UC_Login
+
+Recepcionista --> UC1
+Recepcionista --> UC2
+Recepcionista --> UC3
+
+Almacenero --> UC4
+Almacenero --> UC5
+
+Transportista --> UC6
+Transportista --> UC7
+Transportista --> UC8
+Transportista --> UC9
+
+Administrador --> UC10
+Administrador --> UC11
+Administrador --> UC12
+Administrador --> UC13
+
+Cliente --> UC14
+Cliente --> UC15
+Cliente --> UC16
+@enduml
