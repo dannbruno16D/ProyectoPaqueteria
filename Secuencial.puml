@@ -1,22 +1,33 @@
-@startuml secuencia_excepcion
-participant Cliente
-participant Taquilla
-participant Agenda
+@startuml
+actor Recepcionista as R
+actor "Encargado de Almacén" as A
+participant "Sistema (Backend)" as S
+actor Transportista as T
 
-Cliente -> Taquilla: solicitudReserva()
-activate Taquilla
-Taquilla -> Agenda: consultarDisponibilidad()
-activate Agenda
-alt disponible
-    Agenda --> Taquilla: OK
-else ocupada
-    Agenda --> Taquilla: LocalidadOcupadaExcep
-end
-deactivate Agenda
-alt disponible
-    Taquilla --> Cliente: comprobante
-else ocupada
-    Taquilla --> Cliente: excepcion
-end
-deactivate Taquilla
+autonumber
+
+R -> S: Ingresar datos del envío y remitente
+activate R
+activate S
+S -> S: Generar código de rastreo único y registrar Log de auditoría
+S --> R: Etiqueta y confirmación de registro
+deactivate S
+
+R -> A: Enviar paquete físico a bodega
+deactivate R
+activate A
+A -> S: Registrar ingreso de paquete a estante/almacén
+activate S
+S -> S: Actualizar estado a 'En Almacén' + Registrar Log
+S --> A: Confirmación de almacenamiento
+deactivate A
+
+A -> S: Asignar paquete a transportista para ruta
+S -> T: Notificar paquete asignado
+activate T
+T -> S: Confirmar aceptación de carga
+deactivate T
+S -> S: Actualizar estado a 'En Tránsito' + Registrar Log
+S --> A: Asignación completada
+deactivate S
 @enduml
