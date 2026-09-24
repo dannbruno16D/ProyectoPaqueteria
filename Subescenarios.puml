@@ -4,7 +4,6 @@ participant "Sistema" as S
 actor Administrador as Admin
 
 autonumber
-
 P -> S: Intentar procesar o mover paquete (en almacén / ruta)
 activate P
 activate S
@@ -26,3 +25,4 @@ S --> P: Notificar resolución del caso
 deactivate S
 deactivate P
 @enduml
+

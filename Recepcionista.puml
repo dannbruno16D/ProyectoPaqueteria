@@ -1,0 +1,22 @@
+@startuml
+title Subescenario - Registrar nuevo envío
+
+actor Recepcionista
+participant "Sistema" as Sistema
+database "Base de Datos" as BD
+
+Recepcionista -> Sistema: Ingresar datos del envío
+
+Sistema -> Sistema: Verificar datos
+
+alt Datos correctos
+    Sistema -> BD: Guardar información del envío
+    BD --> Sistema: Envío registrado
+
+    Sistema -> Sistema: Generar código de rastreo
+    Sistema --> Recepcionista: Mostrar código de rastreo
+else Datos incorrectos
+    Sistema --> Recepcionista: Solicitar corrección de datos
+end
+
+@enduml

@@ -32,8 +32,6 @@ package "Sistema de Gestión y Rastreo de Paquetería" {
   usecase "Recibir notificaciones" as UC15
   usecase "Solicitar servicios" as UC16
 }
-
-' Todos los roles internos usan el login
 Recepcionista --> UC_Login
 Almacenero --> UC_Login
 Transportista --> UC_Login
@@ -60,3 +58,4 @@ Cliente --> UC14
 Cliente --> UC15
 Cliente --> UC16
 @enduml
+

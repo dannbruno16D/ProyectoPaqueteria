@@ -1,0 +1,20 @@
+@startuml
+title Subescenario - Consultar estado por rastreo
+
+actor Cliente
+participant "Sistema" as Sistema
+database "Base de Datos" as BD
+
+Cliente -> Sistema: Ingresar código de rastreo
+
+Sistema -> BD: Buscar envío
+
+alt Código válido
+    BD --> Sistema: Información del envío
+    Sistema --> Cliente: Mostrar estado del envío
+else Código no válido
+    BD --> Sistema: Envío no encontrado
+    Sistema --> Cliente: Mostrar mensaje de error
+end
+
+@enduml
