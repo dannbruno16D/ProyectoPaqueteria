@@ -1,0 +1,18 @@
+@startuml
+actor "Encargado de Almacén" as EA
+participant "Sistema" as S
+actor Transportista as T
+
+autonumber
+
+EA -> S: 5. Registrar ingreso a almacén (Escanear recepción en bodega)
+activate S
+S --> EA: Ingreso registrado en inventario
+EA -> S: 7. Actualizar ubicación del paquete (Fijar pasillo/estante de resguardo)
+S --> EA: Ubicación actualizada
+EA -> S: 6. Asignar paquete a transportista (Confirmar salida de bodega)
+S --> EA: Asignación de salida registrada
+EA -> T: 8. Entregar paquete al transportista (Entrega física de mercancía)
+deactivate S
+
+@enduml

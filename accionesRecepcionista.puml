@@ -1,0 +1,18 @@
+@startuml
+actor Recepcionista as R
+participant "Sistema" as S
+
+autonumber
+
+R -> S: 1. Registrar nuevo envío (Ingresar datos de remitente y destinatario)
+activate S
+S --> R: Confirmación de formulario abierto
+R -> S: 2. Generar código de rastreo (Asignar identificador único)
+S --> R: Código y etiqueta generados con éxito
+R -> S: 3. Verificar datos (Validar autenticidad de origen y destino)
+S --> R: Verificación aprobada
+R -> S: 4. Asignar paquete a transportista (Vincular carga al repartidor)
+S --> R: Asignación registrada en el sistema
+deactivate S
+
+@enduml

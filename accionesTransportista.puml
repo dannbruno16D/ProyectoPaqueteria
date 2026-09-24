@@ -1,0 +1,18 @@
+@startuml
+actor Transportista as T
+participant "Sistema / App Móvil" as S
+
+autonumber
+
+T -> S: 9. Consultar paquetes asignados (Ver lista de entregas del día)
+activate S
+S --> T: Mostrar listado de envíos pendientes
+T -> S: 10. Actualizar estado del envío (Cambiar a 'En tránsito' o 'Entregado')
+S --> T: Estatus actualizado en tiempo real
+T -> S: 11. Reportar incidencias (Anotar demora, dirección incorrecta o ausencia)
+S --> T: Incidencia registrada y notificada a central
+T -> S: 12. Escanear código (Validar código de barras al entregar al cliente final)
+S --> T: Entrega cerrada con éxito
+deactivate S
+
+@enduml

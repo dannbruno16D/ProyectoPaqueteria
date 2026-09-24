@@ -1,0 +1,15 @@
+@startuml
+actor Cliente as C
+participant "Sistema Web / App" as S
+
+autonumber
+
+C -> S: 17. Consultar estado por rastreo (Ingresar código único en la plataforma)
+activate S
+S --> C: Mostrar ubicación y estatus actual del paquete
+S --> C: 18. Recibir notificaciones (Alertas automáticas vía push/correo sobre el avance)
+C -> S: 19. Solicitar servicios (Pedir recolección a domicilio o gestionar devolución)
+S --> C: Solicitud de servicio procesada con folio
+deactivate S
+
+@enduml

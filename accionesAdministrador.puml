@@ -1,0 +1,18 @@
+@startuml
+actor Administrador as A
+participant "Sistema" as S
+
+autonumber
+
+A -> S: 13. Supervisar operaciones (Monitorear panel general de envíos)
+activate S
+S --> A: Mostrar métricas y estatus globales
+A -> S: 14. Generar reportes y auditoría (Exportar estadísticas de tiempos y desempeño)
+S --> A: Reporte generado (PDF/Excel)
+A -> S: 15. Gestionar usuarios y permisos (Dar de alta/baja a recepcionistas o transportistas)
+S --> A: Cambios de permisos guardados
+A -> S: 16. Autorizar resoluciones / reembolsos (Aprobar compensaciones por reclamos)
+S --> A: Resolución procesada y registrada
+deactivate S
+
+@enduml
