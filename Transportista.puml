@@ -1,0 +1,21 @@
+@startuml
+title Subescenario - Actualizar estado del envío
+
+actor Transportista
+participant "Sistema" as Sistema
+database "Base de Datos" as BD
+
+Transportista -> Sistema: Consultar paquetes asignados
+Sistema -> BD: Buscar paquetes asignados
+BD --> Sistema: Lista de paquetes
+Sistema --> Transportista: Mostrar paquetes
+
+Transportista -> Sistema: Seleccionar paquete
+Transportista -> Sistema: Actualizar estado del envío
+
+Sistema -> BD: Guardar nuevo estado
+BD --> Sistema: Estado actualizado
+
+Sistema --> Transportista: Confirmar actualización
+
+@enduml

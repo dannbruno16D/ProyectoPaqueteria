@@ -1,0 +1,63 @@
+@startuml
+title Diagrama de Clases - Sistema de Paquetería
+
+class Paquete {
+    - id : int
+    - descripcion : String
+    - estado : String
+    - ubicacion : String
+    + registrar()
+    + actualizarEstado()
+}
+
+class Cliente {
+    - id : int
+    - nombre : String
+    - direccion : String
+    + consultarPaquete()
+}
+
+class Usuario {
+    - id : int
+    - nombre : String
+    - rol : String
+    + autenticar()
+}
+
+class Recepcionista {
+    + registrarPaquete()
+    + asignarBodega()
+}
+
+class Repartidor {
+    + recibirRuta()
+    + actualizarEntrega()
+}
+
+class Administrador {
+    + generarReporte()
+    + gestionarUsuarios()
+}
+
+class Ruta {
+    - id : int
+    - origen : String
+    - destino : String
+    + optimizarRuta()
+}
+
+class Bodega {
+    - id : int
+    - direccion : String
+    + almacenarPaquete()
+}
+
+Cliente "1" --> "N" Paquete
+Usuario <|-- Recepcionista
+Usuario <|-- Repartidor
+Usuario <|-- Administrador
+Paquete --> Ruta
+Paquete --> Bodega
+
+@enduml
+

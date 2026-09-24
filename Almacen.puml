@@ -1,0 +1,20 @@
+@startuml
+title Subescenario - Registrar ingreso a almacén
+
+actor "Encargado de Almacén" as Almacenero
+participant "Sistema" as Sistema
+database "Base de Datos" as BD
+
+Almacenero -> Sistema: Registrar ingreso del paquete
+
+Sistema -> Sistema: Verificar datos del paquete
+
+alt Paquete válido
+    Sistema -> BD: Guardar ingreso a almacén
+    BD --> Sistema: Ingreso registrado
+    Sistema --> Almacenero: Confirmar ingreso
+else Paquete no válido
+    Sistema --> Almacenero: Mostrar error
+end
+
+@enduml

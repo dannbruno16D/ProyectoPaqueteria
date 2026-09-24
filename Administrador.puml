@@ -1,0 +1,24 @@
+@startuml
+title Subescenario - Generar reportes y auditoría
+
+actor Administrador
+participant "Sistema" as Sistema
+database "Base de Datos" as BD
+
+Administrador -> Sistema: Solicitar reporte
+
+Sistema -> BD: Consultar información
+BD --> Sistema: Datos de operaciones
+
+Sistema -> Sistema: Generar reporte
+
+Sistema --> Administrador: Mostrar reporte
+
+Administrador -> Sistema: Consultar auditoría
+
+Sistema -> BD: Consultar bitácora
+BD --> Sistema: Registros de auditoría
+
+Sistema --> Administrador: Mostrar registros de auditoría
+
+@enduml
