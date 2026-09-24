@@ -1,0 +1,39 @@
+@startuml
+title Diagrama ER - Base de Datos Paquetería
+
+entity Cliente {
+    *id : int
+    nombre : String
+    direccion : String
+}
+
+entity Paquete {
+    *id : int
+    descripcion : String
+    estado : String
+    ubicacion : String
+}
+
+entity Ruta {
+    *id : int
+    origen : String
+    destino : String
+}
+
+entity Bodega {
+    *id : int
+    direccion : String
+}
+
+entity Usuario {
+    *id : int
+    nombre : String
+    rol : String
+}
+
+Cliente ||--o{ Paquete
+Paquete }o--|| Ruta
+Paquete }o--|| Bodega
+Usuario ||--o{ Paquete
+
+@enduml
