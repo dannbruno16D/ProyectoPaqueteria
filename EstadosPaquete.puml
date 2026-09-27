@@ -1,0 +1,28 @@
+@startuml EstadoPaquete
+
+[*] --> Registrado : Recepcionista registra envío
+
+state Registrado {
+  [*] --> PendienteAsignacion
+  PendienteAsignacion --> Asignado : Transportista asignado
+}
+
+state EnTransito {
+  [*] --> EnRuta
+  EnRuta --> IntentoEntrega : Transportista llega a destino
+}
+
+Registrado --> EnTransito : Transportista inicia traslado
+
+state IntentoEntrega {
+  IntentoEntrega --> Entregado : Cliente recibe paquete
+  IntentoEntrega --> Retenido : Incidencia / Cliente ausente
+}
+
+Retenido --> EnTransito : Reintento de entrega
+Retenido --> Devuelto : Exceso de intentos o solicitud
+
+Entregado --> [*]
+Devuelto --> [*]
+
+@enduml

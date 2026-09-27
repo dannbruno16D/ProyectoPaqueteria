@@ -1,0 +1,20 @@
+@startuml SecuenciaIncidencias
+autonumber
+
+actor Transportista
+participant "App Movil" as App
+participant "Servidor Central" as Server
+actor Administrador
+actor Cliente
+
+Transportista -> App: Selecciona "Reportar Incidencia"[cite: 1]
+App -> Transportista: Solicita motivo (Dirección incorrecta, paquete dañado)
+Transportista -> App: Ingresa detalles y confirma
+App -> Server: registrarIncidencia(idPaquete, motivo)
+Server -> Administrador: Notifica incidencia grave[cite: 1]
+
+Administrador -> Server: Evaluar caso y autorizar reembolso/reclamo[cite: 1]
+Server -> Cliente: Notificar estado de reclamo y resolución[cite: 1]
+Server -> Transportista: Actualizar estado a "Devuelto a Almacén"[cite: 1]
+
+@enduml

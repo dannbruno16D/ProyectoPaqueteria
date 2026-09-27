@@ -1,0 +1,35 @@
+@startuml ComponentesSistema
+
+package "Capa de Presentación (Interfaz UI)" {
+  [Módulo Recepción] as UI_Rec
+  [Módulo Transportista / Móvil] as UI_Trans
+  [Módulo Portal Cliente] as UI_Cli
+  [Módulo Administración] as UI_Admin
+}
+package "Capa de Lógica de Negocio" {
+  [Gestor de Envíos] as GE
+  [Gestor de Inventario y Stock] as GI
+  [Generador de Rastreo y Etiquetas] as GR
+  [Sistema de Notificaciones] as SN
+}
+
+package "Capa de Datos" {
+  database "Base de Datos Relacional" as BD
+}
+
+cloud "Servicios Externos" {
+  [Servicio SMS / Email] as ServMsg
+}
+' Conexiones UI a Lógica
+UI_Rec --> GE
+UI_Rec --> GR
+UI_Trans --> GE
+UI_Cli --> GE
+UI_Admin --> GI
+' Conexiones Lógica a Datos y Servicios
+GE --> BD
+GI --> BD
+GE --> SN
+SN --> ServMsg
+
+@enduml

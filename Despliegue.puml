@@ -1,0 +1,25 @@
+@startuml DespliegueSistema
+
+node "Dispositivo Cliente" {
+  [Navegador Web / App Móvil] as AppCliente
+}
+
+node "Dispositivo Transportista" {
+  [App Móvil Transportista] as AppTransportista
+}
+
+node "Servidor de Aplicaciones" {
+  component "Backend Node.js / Java" as Backend
+  component "Servicio API REST" as API
+}
+
+node "Servidor de Base de Datos" {
+  database "MySQL / PostgreSQL" as BaseDatos
+}
+
+AppCliente -- API : HTTPS
+AppTransportista -- API : HTTPS
+API -- Backend
+Backend -- BaseDatos : JDBC / SQL
+
+@enduml
